@@ -10,9 +10,7 @@ import { checkAuth, handleValidationErrors } from './utils/index.js';
 
 /* Подключение к базе данных */
 mongoose
-  .connect(
-    'mongodb+srv://admin:admin1234@cluster0.v5efd.mongodb.net/blog?retryWrites=true&w=majority',
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log('DB OK')) // Успешное подключение к БД
   .catch((error) => console.log('DB ERROR', error)); // Ошибка подключения к БД
 
@@ -65,7 +63,7 @@ app.delete('/comments/:id/:comment', checkAuth, PostController.removeComment); /
 
 app.get('/posts/tags/:tag', PostController.getFilteredPosts); // Получение постов с определенным тегом
 
-app.listen(4444, (error) => {
+app.listen(process.env.PORT || 4444, (error) => {
   if (error) {
     return console.log(error);
   }
