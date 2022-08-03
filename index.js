@@ -46,7 +46,7 @@ app.get('/auth/me', checkAuth, UserController.getMe);
 /* Загрузка изображений */
 app.post('/upload', upload.single('image'), (req, res) => {
   res.json({
-    url: `/uploads/${req.file.originalname}`, // Возвращаем путь до файла
+    url: `uploads/${req.file.originalname}`, // Возвращаем путь до файла
   });
 });
 
